@@ -585,6 +585,188 @@
         .output-block h5 { color: var(--matrix-green); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-family: 'Orbitron', monospace; }
         .output-block pre { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; line-height: 1.7; color: var(--text-secondary); margin: 0; }
 
+        /* ==================== BOOK SECTION STYLES ==================== */
+        .book-section-wrapper {
+            margin-bottom: 50px;
+        }
+
+        .book-section-label {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(0,243,255,0.15), rgba(157,0,255,0.15));
+            border: 2px solid rgba(0, 243, 255, 0.4);
+            border-radius: 50px;
+            color: var(--cyber-blue);
+            font-size: 0.85em; font-weight: 700;
+            margin-bottom: 25px;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 2px;
+        }
+
+        .book-card {
+            background: linear-gradient(135deg, rgba(26,31,58,0.95), rgba(21,26,53,0.95));
+            border: 2px solid rgba(0, 243, 255, 0.35);
+            border-radius: 20px; padding: 35px;
+            transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-purple), var(--cyber-pink));
+        }
+
+        .book-card::after {
+            content: '';
+            position: absolute; top: 0; right: 0;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(0,243,255,0.08), transparent);
+            pointer-events: none;
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 15px 50px rgba(0, 243, 255, 0.2);
+        }
+
+        .book-header {
+            display: flex; align-items: flex-start; gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .book-cover-icon {
+            width: 80px; height: 100px; flex-shrink: 0;
+            background: linear-gradient(160deg, var(--cyber-blue), var(--cyber-purple));
+            border-radius: 8px 14px 14px 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5em; color: white;
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.4), 0 0 20px rgba(0,243,255,0.3);
+            position: relative;
+        }
+
+        .book-cover-icon::before {
+            content: '';
+            position: absolute; left: 0; top: 5px; bottom: 5px;
+            width: 6px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .book-meta { flex: 1; }
+
+        .book-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 14px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 6px;
+            font-size: 0.72em; font-weight: 700;
+            color: var(--cyber-blue);
+            font-family: 'Orbitron', monospace;
+            margin-bottom: 10px;
+        }
+
+        .book-title-main {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5em; font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 6px; line-height: 1.2;
+            background: linear-gradient(135deg, #fff, var(--cyber-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .book-subtitle {
+            font-size: 0.85em; color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .book-author {
+            font-size: 0.9em; color: var(--matrix-green);
+            font-weight: 600;
+        }
+
+        .book-stats {
+            display: flex; gap: 20px; flex-wrap: wrap;
+            padding: 15px 20px;
+            background: rgba(0,243,255,0.05);
+            border: 1px solid rgba(0,243,255,0.15);
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .book-stat-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.82em; color: var(--text-secondary);
+        }
+
+        .book-stat-item i { color: var(--cyber-blue); }
+        .book-stat-item strong { color: var(--text-primary); }
+
+        .book-chapters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .chapter-chip {
+            padding: 8px 12px;
+            background: rgba(157, 0, 255, 0.08);
+            border: 1px solid rgba(157, 0, 255, 0.25);
+            border-radius: 8px;
+            font-size: 0.78em; color: #c77dff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .chapter-chip i { margin-right: 6px; color: var(--cyber-purple); }
+
+        .book-actions {
+            display: flex; gap: 15px; flex-wrap: wrap;
+        }
+
+        .btn-book-view {
+            padding: 13px 28px;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            color: white; border: none;
+            border-radius: 10px; cursor: pointer;
+            font-weight: 700; font-size: 0.95em;
+            font-family: 'JetBrains Mono', monospace;
+            display: inline-flex; align-items: center; gap: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .btn-book-view:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.6);
+        }
+
+        .btn-book-download {
+            padding: 13px 28px;
+            background: transparent;
+            color: var(--cyber-blue);
+            border: 2px solid rgba(0, 243, 255, 0.5);
+            border-radius: 10px; cursor: pointer;
+            font-weight: 700; font-size: 0.95em;
+            font-family: 'JetBrains Mono', monospace;
+            display: inline-flex; align-items: center; gap: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-book-download:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--cyber-blue);
+            transform: translateY(-3px);
+        }
+
         /* ==================== PDF CARD STYLES ==================== */
         .pdf-card {
             background: var(--bg-card);
@@ -917,6 +1099,54 @@
 
         <!-- ==================== UNIDAD II ==================== -->
         <div class="tabs-container" id="unit-2">
+
+            <!-- ===== LIBRO DE LA UNIDAD ===== -->
+            <div class="book-section-wrapper fade-in">
+                <div class="book-section-label">
+                    <i class="fas fa-book-open"></i> LIBRO DE LA UNIDAD II
+                </div>
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-cover-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="book-meta">
+                            <div class="book-tag"><i class="fas fa-star"></i> TEXTO PRINCIPAL · UNIDAD II</div>
+                            <div class="book-title-main">Lenguajes de Programación I</div>
+                            <div class="book-subtitle">Fundamentos, Algoritmos y Aplicaciones Prácticas</div>
+                            <div class="book-author"><i class="fas fa-pen-nib" style="margin-right:6px;color:var(--matrix-green)"></i>Yuber Anthony Ticona Incacutipa · Edición 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="book-stats">
+                        <div class="book-stat-item"><i class="fas fa-layer-group"></i><span>Capítulos: <strong>7</strong></span></div>
+                        <div class="book-stat-item"><i class="fas fa-file-alt"></i><span>Páginas: <strong>38</strong></span></div>
+                        <div class="book-stat-item"><i class="fas fa-code"></i><span>Lenguaje: <strong>C / C++</strong></span></div>
+                        <div class="book-stat-item"><i class="fas fa-calendar"></i><span>Año: <strong>2026</strong></span></div>
+                    </div>
+
+                    <div class="book-chapters">
+                        <div class="chapter-chip"><i class="fas fa-chart-line"></i>Cap. 1: Complejidad Computacional</div>
+                        <div class="chapter-chip"><i class="fas fa-file-code"></i>Cap. 2: Manejo de Archivos en C</div>
+                        <div class="chapter-chip"><i class="fas fa-copy"></i>Cap. 3: Múltiples Archivos en C</div>
+                        <div class="chapter-chip"><i class="fas fa-cube"></i>Cap. 4: Estructuras (struct) en C</div>
+                        <div class="chapter-chip"><i class="fas fa-globe"></i>Cap. 5: Otros Lenguajes 2026</div>
+                        <div class="chapter-chip"><i class="fas fa-desktop"></i>Cap. 6: Interfaces Gráficas (GUI)</div>
+                        <div class="chapter-chip"><i class="fas fa-project-diagram"></i>Cap. 7: Práctica Integradora</div>
+                    </div>
+
+                    <div class="book-actions">
+                        <a href="Lenguajes_Programacion_I_Ticona_2026.pdf" target="_blank" class="btn-book-view">
+                            <i class="fas fa-book-open"></i> LEER LIBRO
+                        </a>
+                        <a href="Lenguajes_Programacion_I_Ticona_2026.pdf" download class="btn-book-download">
+                            <i class="fas fa-download"></i> DESCARGAR PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PESTAÑAS ACTIVIDADES ===== -->
             <div class="tabs">
                 <button class="tab-btn active" data-tab="u2-act1"><i class="fas fa-file-pdf"></i> ACTIVIDAD 1</button>
                 <button class="tab-btn" data-tab="u2-act2"><i class="fas fa-file-pdf"></i> ACTIVIDAD 2</button>
@@ -925,7 +1155,7 @@
                 <button class="tab-btn" data-tab="u2-act5"><i class="fas fa-file-pdf"></i> ACTIVIDAD 5</button>
             </div>
 
-            <!-- Actividad 1 -->
+            <!-- Actividad 1 — tarea_viernes.pdf -->
             <div class="content-area active" id="u2-act1">
                 <div class="pdf-grid">
                     <div class="pdf-card fade-in">
@@ -933,23 +1163,19 @@
                             <div class="pdf-icon-box"><i class="fas fa-file-pdf"></i></div>
                             <div class="pdf-card-info">
                                 <div class="pdf-badge"><i class="fas fa-file-pdf"></i> UNIDAD II · ACTIVIDAD 1</div>
-                                <div class="pdf-title">Actividad 1 — Unidad II</div>
+                                <div class="pdf-title">Manejo de Múltiples Archivos en C</div>
                             </div>
                         </div>
-                        <p class="pdf-description">Documento PDF correspondiente a la Actividad 1 de la Unidad II del curso de Lenguaje de Programación I.</p>
-                        <div class="pdf-placeholder">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Reemplaza el <code>href="#"</code> de los botones con el enlace de tu PDF</p>
-                        </div>
+                        <p class="pdf-description">Tarea sobre escritura y lectura de múltiples archivos en C: ventas diarias, temperaturas por hora, logs de errores, filtrado y consolidación de datos.</p>
                         <div class="pdf-actions">
-                            <a href="#" target="_blank" class="btn-pdf-view"><i class="fas fa-eye"></i> VER PDF</a>
-                            <a href="#" download class="btn-pdf-download"><i class="fas fa-download"></i> DESCARGAR</a>
+                            <a href="tarea_viernes.pdf" target="_blank" class="btn-pdf-view"><i class="fas fa-eye"></i> VER PDF</a>
+                            <a href="tarea_viernes.pdf" download class="btn-pdf-download"><i class="fas fa-download"></i> DESCARGAR</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Actividad 2 -->
+            <!-- Actividad 2 — practica_integrada__1_.pdf -->
             <div class="content-area" id="u2-act2">
                 <div class="pdf-grid">
                     <div class="pdf-card fade-in">
@@ -957,23 +1183,19 @@
                             <div class="pdf-icon-box"><i class="fas fa-file-pdf"></i></div>
                             <div class="pdf-card-info">
                                 <div class="pdf-badge"><i class="fas fa-file-pdf"></i> UNIDAD II · ACTIVIDAD 2</div>
-                                <div class="pdf-title">Actividad 2 — Unidad II</div>
+                                <div class="pdf-title">Práctica Integradora Final</div>
                             </div>
                         </div>
-                        <p class="pdf-description">Documento PDF correspondiente a la Actividad 2 de la Unidad II del curso de Lenguaje de Programación I.</p>
-                        <div class="pdf-placeholder">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Reemplaza el <code>href="#"</code> de los botones con el enlace de tu PDF</p>
-                        </div>
+                        <p class="pdf-description">Práctica integradora con soluciones completas: sistema de gestión de biblioteca, análisis de temperaturas mensuales, corrección de inventario y optimización de código.</p>
                         <div class="pdf-actions">
-                            <a href="#" target="_blank" class="btn-pdf-view"><i class="fas fa-eye"></i> VER PDF</a>
-                            <a href="#" download class="btn-pdf-download"><i class="fas fa-download"></i> DESCARGAR</a>
+                            <a href="practica_integrada__1_.pdf" target="_blank" class="btn-pdf-view"><i class="fas fa-eye"></i> VER PDF</a>
+                            <a href="practica_integrada__1_.pdf" download class="btn-pdf-download"><i class="fas fa-download"></i> DESCARGAR</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Actividad 3 -->
+            <!-- Actividad 3 — placeholder -->
             <div class="content-area" id="u2-act3">
                 <div class="pdf-grid">
                     <div class="pdf-card fade-in">
@@ -997,7 +1219,7 @@
                 </div>
             </div>
 
-            <!-- Actividad 4 -->
+            <!-- Actividad 4 — placeholder -->
             <div class="content-area" id="u2-act4">
                 <div class="pdf-grid">
                     <div class="pdf-card fade-in">
@@ -1021,7 +1243,7 @@
                 </div>
             </div>
 
-            <!-- Actividad 5 -->
+            <!-- Actividad 5 — placeholder -->
             <div class="content-area" id="u2-act5">
                 <div class="pdf-grid">
                     <div class="pdf-card fade-in">
