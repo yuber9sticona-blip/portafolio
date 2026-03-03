@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio Académico - Yuber Anthony Ticona Incacutipa">
+    <title>Yuber Anthony Ticona Incacutipa | Portafolio Académico</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cyber-blue: #00f3ff;
+            --cyber-pink: #ff00ff;
+            --cyber-purple: #9d00ff;
+            --matrix-green: #00ff41;
+            --electric-blue: #0066ff;
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151a35;
+            --bg-card: #1a1f3a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --text-muted: #718096;
+            --glow-blue: rgba(0, 243, 255, 0.5);
+            --glow-pink: rgba(255, 0, 255, 0.5);
+            --border: rgba(0, 243, 255, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== ANIMATED BACKGROUND ==================== */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .circuit-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.1;
+            pointer-events: none;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, var(--cyber-blue) 3px, transparent 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, var(--cyber-blue) 3px, transparent 4px),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, var(--cyber-pink) 11px, transparent 12px);
+            background-size: 100px 100px, 100px 100px, 50px 50px;
+            animation: circuitFlow 20s linear infinite;
+        }
+
+        @keyframes circuitFlow {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 100px 100px, -100px -100px, 50px 50px; }
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--cyber-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--glow-blue);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                rgba(0, 243, 255, 0.03) 50%,
+                transparent 100%
+            );
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* ==================== LOADING SCREEN ==================== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 3em;
+            font-weight: 900;
+            color: var(--cyber-blue);
+            text-shadow: 
+                0 0 20px var(--glow-blue),
+                0 0 40px var(--glow-blue);
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .terminal-loader {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            color: var(--matrix-green);
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .terminal-line {
+            opacity: 0;
+            animation: typeIn 0.5s forwards;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0s; }
+        .terminal-line:nth-child(2) { animation-delay: 0.5s; }
+        .terminal-line:nth-child(3) { animation-delay: 1s; }
+        .terminal-line:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes typeIn {
+            to { opacity: 1; }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: var(--bg-secondary);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-pink));
+            animation: loading 2s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        /* ==================== HEADER ==================== */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .main-header.scrolled {
+            background: rgba(10, 14, 39, 0.98);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.3em;
+            color: white;
+            font-family: 'Orbitron', monospace;
+            box-shadow: 0 0 20px var(--glow-blue);
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+
+        .logo-text h1 {
+            font-size: 1em;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'Orbitron', monospace;
+        }
+
+        .logo-text p {
+            font-size: 0.7em;
+            color: var(--cyber-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::before {
+            content: '>';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--cyber-blue);
+        }
+
+        .nav-links a:hover {
+            color: var(--cyber-blue);
+            text-shadow: 0 0 10px var(--glow-blue);
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+            left: -20px;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 40px 80px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .glitch-text {
+            position: relative;
+            font-family: 'Orbitron', monospace;
+            font-size: 1em;
+            font-weight: 700;
+            color: var(--cyber-blue);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .glitch-text::before {
+            content: '< ';
+            color: var(--cyber-pink);
+        }
+
+        .glitch-text::after {
+            content: ' />';
+            color: var(--cyber-pink);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 5em;
+            font-weight: 900;
+            margin: 20px 0;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 80px var(--glow-blue);
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5em;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .hero-university {
+            font-size: 1.1em;
+            color: var(--matrix-green);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .typing-text {
+            font-size: 1.2em;
+            color: var(--text-primary);
+            margin-bottom: 50px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typed-cursor {
+            animation: blink 1s infinite;
+            color: var(--cyber-blue);
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px var(--glow-blue), 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--cyber-blue);
+            border-color: var(--cyber-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cyber-blue);
+            color: var(--bg-primary);
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        /* ==================== PROFILE SECTION ==================== */
+        .profile-section {
+            position: relative;
+            padding: 100px 40px;
+            z-index: 1;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .profile-image-container {
+            position: relative;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            border-radius: 20px;
+            padding: 5px;
+            box-shadow: 0 0 40px var(--glow-blue);
+            animation: rotate3d 10s linear infinite;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            100% { transform: perspective(1000px) rotateY(360deg); }
+        }
+
+        .profile-inner {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-card);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8em;
+            color: var(--cyber-blue);
+        }
+
+        .profile-info {
+            color: var(--text-secondary);
+        }
+
+        .profile-info h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(0, 243, 255, 0.05);
+            border-left: 3px solid var(--cyber-blue);
+            border-radius: 5px;
+        }
+
+        .info-item i {
+            color: var(--cyber-blue);
+            font-size: 1.2em;
+        }
+
+        .info-item strong {
+            color: var(--text-primary);
+            margin-right: 10px;
+        }
+
+        /* ==================== STATS SECTION ==================== */
+        .stats-section {
+            position: relative;
+            padding: 80px 40px;
+            z-index: 1;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-pink));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 20px 40px var(--glow-blue);
+        }
+
+        .stat-icon {
+            font-size: 3em;
+            color: var(--cyber-blue);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 900;
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==================== SECTION HEADERS ==================== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            color: var(--cyber-blue);
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--cyber-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ==================== CONTENT SECTION ==================== */
+        .content-section {
+            position: relative;
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .unit-selector {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .unit-btn {
+            padding: 15px 35px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .unit-btn:hover {
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        .unit-btn.active {
+            background: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 0 30px var(--glow-blue);
+        }
+
+        .tabs-container {
+            display: none;
+        }
+
+        .tabs-container.active {
+            display: block;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 12px 28px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95em;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--cyber-blue);
+            color: var(--cyber-blue);
+        }
+
+        .tab-btn.active {
+            background: var(--cyber-blue);
+            color: var(--bg-primary);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 20px var(--glow-blue);
+        }
+
+        .content-area {
+            display: none;
+        }
+
+        .content-area.active {
+            display: block;
+        }
+
+        /* ==================== ACTIVITIES GRID ==================== */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 30px;
+        }
+
+        .activity-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--glow-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .activity-card:hover::before {
+            opacity: 0.5;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 10px 40px var(--glow-blue);
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .activity-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .meta-badge {
+            padding: 6px 14px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 700;
+            color: var(--cyber-blue);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .activity-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .activity-description {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* ==================== CODE BLOCKS ==================== */
+        .code-block {
+            background: rgba(10, 14, 39, 0.9);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: '< CODE />';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 0.7em;
+            color: var(--cyber-pink);
+            font-family: 'Orbitron', monospace;
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        .code-block code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            line-height: 1.6;
+            color: var(--matrix-green);
+        }
+
+        .output-block {
+            background: rgba(0, 255, 65, 0.05);
+            border: 2px solid rgba(0, 255, 65, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .output-block h5 {
+            color: var(--matrix-green);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .output-block pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* ==================== EMPTY STATE ==================== */
+        .empty-state {
+            text-align: center;
+            padding: 100px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 5em;
+            margin-bottom: 25px;
+            opacity: 0.3;
+            color: var(--cyber-blue);
+        }
+
+        .empty-state h3 {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: rgba(10, 14, 39, 0.95);
+            border-top: 2px solid var(--border);
+            padding: 60px 40px 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', monospace;
+        }
+
+        .footer-about p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--cyber-blue);
+            color: white;
+            border-color: var(--cyber-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--glow-blue);
+        }
+
+        .footer-links h4 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-family: 'Orbitron', monospace;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a::before {
+            content: '→ ';
+            color: var(--cyber-blue);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .footer-links a:hover {
+            color: var(--cyber-blue);
+            padding-left: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-frame {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .section-title {
+                font-size: 2.5em;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .profile-info h2 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ==================== SCROLL ANIMATIONS ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="loader-logo">YATI</div>
+            <div class="terminal-loader">
+                <div class="terminal-line">&gt; Inicializando sistema...</div>
+                <div class="terminal-line">&gt; Cargando módulos...</div>
+                <div class="terminal-line">&gt; Compilando datos...</div>
+                <div class="terminal-line">&gt; Sistema listo ✓</div>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="matrix-bg">
+        <canvas id="matrixCanvas"></canvas>
+    </div>
+    <div class="circuit-lines"></div>
+    <div class="floating-particles" id="particles"></div>
+    <div class="glitch-overlay"></div>
+
+    <!-- Header -->
+    <header class="main-header" id="mainHeader">
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">YT</div>
+                <div class="logo-text">
+                    <h1>PORTAFOLIO DIGITAL</h1>
+                    <p>// Programación I</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">INICIO</a></li>
+                <li><a href="#perfil">PERFIL</a></li>
+                <li><a href="#estadisticas">STATS</a></li>
+                <li><a href="#contenido">PROYECTOS</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="glitch-text">BIENVENIDO AL PORTAFOLIO</div>
+            <h1>YUBER ANTHONY<br>TICONA INCACUTIPA</h1>
+            <div class="hero-subtitle">Estudiante de Ingeniería Estadística e Informática</div>
+            <div class="hero-university">Universidad Nacional del Altiplano - Puno</div>
+            <div class="typing-text">
+                <span id="typedText"></span>
+                <span class="typed-cursor">|</span>
+            </div>
+            <div class="cta-buttons">
+                <a href="#contenido" class="btn btn-primary">
+                    <i class="fas fa-code"></i> VER PROYECTOS
+                </a>
+                <a href="#perfil" class="btn btn-secondary">
+                    <i class="fas fa-user"></i> CONOCER MÁS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section" id="perfil">
+        <div class="profile-container">
+            <div class="profile-image-container">
+                <div class="profile-frame">
+                    <div class="profile-inner">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h2>Sobre Mí</h2>
+                <div class="info-item">
+                    <i class="fas fa-user"></i>
+                    <span><strong>Nombre:</strong> Yuber Anthony Ticona Incacutipa</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span><strong>Carrera:</strong> Ingeniería Estadística e Informática</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-university"></i>
+                    <span><strong>Universidad:</strong> Universidad Nacional del Altiplano</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span><strong>Ubicación:</strong> Puno, Perú</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-book-open"></i>
+                    <span><strong>Curso:</strong> Lenguaje de Programación I</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span><strong>Periodo:</strong> 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="estadisticas">
+        <div class="section-header">
+            <div class="section-tag">
+                <i class="fas fa-chart-line"></i> ESTADÍSTICAS
+            </div>
+            <h2 class="section-title">MÉTRICAS DEL CURSO</h2>
+            <p class="section-description">
+                Resumen cuantitativo de mi progreso y dedicación en el aprendizaje de programación
+            </p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card fade-in">
+                <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                <div class="stat-number">2</div>
+                <div class="stat-label">UNIDADES</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon"><i class="fas fa-tasks"></i></div>
+                <div class="stat-number">4</div>
+                <div class="stat-label">ACTIVIDADES</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon"><i class="fas fa-puzzle-piece"></i></div>
+                <div class="stat-number">15</div>
+                <div class="stat-label">EJERCICIOS</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                <div class="stat-number">100</div>
+                <div class="stat-label">% DEDICACIÓN</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section" id="contenido">
+        <div class="section-header">
+            <div class="section-tag">
+                <i class="fas fa-folder-open"></i> CONTENIDO DEL CURSO
+            </div>
+            <h2 class="section-title">PROYECTOS & EJERCICIOS</h2>
+            <p class="section-description">
+                Ejercicios resueltos organizados por unidades temáticas
+            </p>
+        </div>
+
+        <div class="unit-selector">
+            <button class="unit-btn active" data-unit="1">
+                <i class="fas fa-book"></i> UNIDAD I
+            </button>
+            <button class="unit-btn" data-unit="2">
+                <i class="fas fa-book"></i> UNIDAD II
+            </button>
+        </div>
+
+        <!-- Unidad I -->
+        <div class="tabs-container active" id="unit-1">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="actividad2">
+                    <i class="fas fa-terminal"></i> ACTIVIDAD 2
+                </button>
+                <button class="tab-btn" data-tab="actividad3">
+                    <i class="fas fa-calculator"></i> ACTIVIDAD 3
+                </button>
+                <button class="tab-btn" data-tab="actividad4">
+                    <i class="fas fa-code-branch"></i> ACTIVIDAD 4
+                </button>
+                <button class="tab-btn" data-tab="actividad5">
+                    <i class="fas fa-laptop-code"></i> ACTIVIDAD 5
+                </button>
+            </div>
+
+            <div class="content-area active" id="actividad2">
+                <div class="activities-grid" id="act2-container"></div>
+            </div>
+
+            <div class="content-area" id="actividad3">
+                <div class="activities-grid" id="act3-container"></div>
+            </div>
+
+            <div class="content-area" id="actividad4">
+                <div class="activities-grid" id="act4-container"></div>
+            </div>
+
+            <div class="content-area" id="actividad5">
+                <div class="activities-grid" id="act5-container"></div>
+            </div>
+        </div>
+
+        <!-- Unidad II -->
+        <div class="tabs-container" id="unit-2">
+            <div class="content-area active">
+                <div class="activities-grid">
+                    <div class="empty-state">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>No hay actividades en la Unidad II</h3>
+                        <p>Pronto se agregarán actividades aquí</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>Yuber Anthony Ticona Incacutipa</h3>
+                <p>
+                    Estudiante de Ingeniería Estadística e Informática en la Universidad Nacional del Altiplano. 
+                    Apasionado por la programación, análisis de datos y nuevas tecnologías.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Universidad</h4>
+                <ul>
+                    <li><a href="#">UNA-Puno</a></li>
+                    <li><a href="#">EIEI</a></li>
+                    <li><a href="#">Plan de Estudios</a></li>
+                    <li><a href="#">Malla Curricular</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="#">Documentación</a></li>
+                    <li><a href="#">Tutoriales</a></li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Material del Curso</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yuber Anthony Ticona Incacutipa | Universidad Nacional del Altiplano - Puno</p>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== MATRIX CANVAS EFFECT ====================
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const characters = matrix.split("");
+
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(10, 14, 39, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#00f3ff";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters[Math.floor(Math.random() * characters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ==================== FLOATING PARTICLES ====================
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // ==================== TYPING EFFECT ====================
+        const texts = [
+            "Desarrollando soluciones con código...",
+            "Aprendiendo C y C++ paso a paso...",
+            "Resolviendo problemas algorítmicos...",
+            "Construyendo el futuro digital..."
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedTextElement = document.getElementById('typedText');
+
+        function typeText() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(typeText, speed);
+        }
+
+        // ==================== LOADING SCREEN ====================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+                typeText();
+            }, 3000);
+        });
+
+        // ==================== HEADER SCROLL ====================
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ==================== SCROLL ANIMATIONS ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ==================== UNIT SELECTOR ====================
+        const unitBtns = document.querySelectorAll('.unit-btn');
+        const tabsContainers = document.querySelectorAll('.tabs-container');
+
+        unitBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const unitNumber = btn.getAttribute('data-unit');
+                unitBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                tabsContainers.forEach(container => {
+                    container.classList.remove('active');
+                });
+                document.getElementById(`unit-${unitNumber}`).classList.add('active');
+            });
+        });
+
+        // ==================== TAB SYSTEM ====================
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                const parentContainer = btn.closest('.tabs-container');
+                
+                parentContainer.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                btn.classList.add('active');
+                
+                parentContainer.querySelectorAll('.content-area').forEach(area => {
+                    area.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ==================== EJERCICIOS DATA ====================
+        // [El código de los ejercicios se mantendrá igual que el anterior]
+        
+        // ACTIVIDAD 2
+        function cargarActividad2() {
+            const container = document.getElementById('act2-container');
+            const ejercicios = [
+                {
+                    titulo: 'Entrada y Salida en C',
+                    descripcion: 'Programa que demuestra el uso de scanf() y printf() para diferentes tipos de datos en lenguaje C.',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int a;
+    float b;
+    double c;
+    char d;
+    char e[20];
+    
+    printf("Ingrese un entero: ");
+    scanf("%d", &a);
+    
+    printf("Ingrese un decimal (float): ");
+    scanf("%f", &b);
+    
+    printf("Ingrese un decimal doble: ");
+    scanf("%lf", &c);
+    
+    printf("Ingrese un caracter: ");
+    scanf(" %c", &d);
+    
+    printf("Ingrese una palabra: ");
+    scanf("%s", e);
+    
+    printf("\\nDatos ingresados:\\n");
+    printf("Entero: %d\\n", a);
+    printf("Float: %.2f\\n", b);
+    printf("Double: %.2lf\\n", c);
+    printf("Caracter: %c\\n", d);
+    printf("Cadena: %s\\n", e);
+    
+    return 0;
+}`,
+                    salida: `Ingrese un entero: 42
+Ingrese un decimal (float): 3.14
+Ingrese un decimal doble: 2.71828
+Ingrese un caracter: A
+Ingrese una palabra: Hola
+
+Datos ingresados:
+Entero: 42
+Float: 3.14
+Double: 2.72
+Caracter: A
+Cadena: Hola`
+                },
+                {
+                    titulo: 'Entrada y Salida en C++',
+                    descripcion: 'Programa que demuestra el uso de cin y cout para diferentes tipos de datos en C++.',
+                    codigo: `#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int a;
+    float b;
+    double c;
+    char d;
+    string e;
+    
+    cout << "Ingrese un entero: ";
+    cin >> a;
+    
+    cout << "Ingrese un decimal (float): ";
+    cin >> b;
+    
+    cout << "Ingrese un decimal doble: ";
+    cin >> c;
+    
+    cout << "Ingrese un caracter: ";
+    cin >> d;
+    
+    cout << "Ingrese una palabra: ";
+    cin >> e;
+    
+    cout << "\\nDatos ingresados:\\n";
+    cout << "Entero: " << a << endl;
+    cout << "Float: " << b << endl;
+    cout << "Double: " << c << endl;
+    cout << "Caracter: " << d << endl;
+    cout << "Cadena: " << e << endl;
+    
+    return 0;
+}`,
+                    salida: `Ingrese un entero: 42
+Ingrese un decimal (float): 3.14
+Ingrese un decimal doble: 2.71828
+Ingrese un caracter: A
+Ingrese una palabra: Hola
+
+Datos ingresados:
+Entero: 42
+Float: 3.14
+Double: 2.71828
+Caracter: A
+Cadena: Hola`
+                }
+            ];
+            
+            ejercicios.forEach((ej, index) => {
+                container.innerHTML += crearCardEjercicio(ej, `EJERCICIO ${index + 1}`);
+            });
+        }
+
+        // ACTIVIDAD 3
+        function cargarActividad3() {
+            const container = document.getElementById('act3-container');
+            const ejercicios = [
+                {
+                    titulo: 'Operadores Aritméticos - Suma',
+                    descripcion: 'Suma de dos números usando el operador +',
+                    codigo: `#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Ingrese dos numeros: ";
+    cin >> a >> b;
+    cout << "Suma: " << (a + b) << endl;
+    return 0;
+}`,
+                    salida: `Ingrese dos numeros: 15 25
+Suma: 40`
+                },
+                {
+                    titulo: 'Operadores Aritméticos - División',
+                    descripcion: 'División de dos números con validación de división por cero',
+                    codigo: `#include <iostream>
+using namespace std;
+
+int main() {
+    float a, b;
+    cout << "Ingrese dos numeros: ";
+    cin >> a >> b;
+    if (b != 0) {
+        cout << "Division: " << (a / b) << endl;
+    } else {
+        cout << "Error: Division por cero" << endl;
+    }
+    return 0;
+}`,
+                    salida: `Ingrese dos numeros: 20 4
+Division: 5`
+                },
+                {
+                    titulo: 'Operadores Aritméticos - Módulo',
+                    descripcion: 'Cálculo del residuo de la división entre dos números',
+                    codigo: `#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Ingrese dos numeros: ";
+    cin >> a >> b;
+    if (b != 0) {
+        cout << "Residuo: " << (a % b) << endl;
+    } else {
+        cout << "Error: Division por cero" << endl;
+    }
+    return 0;
+}`,
+                    salida: `Ingrese dos numeros: 17 5
+Residuo: 2`
+                },
+                {
+                    titulo: 'Operadores de Comparación - Igual',
+                    descripcion: 'Compara si dos números son iguales usando el operador ==',
+                    codigo: `#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Ingrese dos numeros: ";
+    cin >> a >> b;
+    if (a == b)
+        cout << "Son iguales" << endl;
+    else
+        cout << "No son iguales" << endl;
+    return 0;
+}`,
+                    salida: `Ingrese dos numeros: 10 10
+Son iguales`
+                },
+                {
+                    titulo: 'Operadores Lógicos - AND',
+                    descripcion: 'Uso del operador lógico && para validar dos condiciones simultáneas',
+                    codigo: `#include <iostream>
+using namespace std;
+
+int main() {
+    int edad, dinero;
+    cout << "Ingrese edad: ";
+    cin >> edad;
+    cout << "Ingrese dinero: ";
+    cin >> dinero;
+    
+    if (edad >= 18 && dinero >= 50)
+        cout << "Puedes entrar al concierto" << endl;
+    else
+        cout << "No puedes entrar" << endl;
+    return 0;
+}`,
+                    salida: `Ingrese edad: 20
+Ingrese dinero: 60
+Puedes entrar al concierto`
+                }
+            ];
+            
+            ejercicios.forEach((ej, index) => {
+                container.innerHTML += crearCardEjercicio(ej, `EJERCICIO ${index + 1}`);
+            });
+        }
+
+        // ACTIVIDAD 4
+        function cargarActividad4() {
+            const container = document.getElementById('act4-container');
+            const ejercicios = [
+                {
+                    titulo: 'Suma de Números Pares',
+                    descripcion: 'Calcula la suma de todos los números pares desde 2 hasta N usando un ciclo for.',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int n, suma = 0;
+    
+    printf("Ingrese N: ");
+    scanf("%d", &n);
+    
+    for (int i = 2; i <= n; i += 2) {
+        suma += i;
+    }
+    
+    printf("Suma de pares: %d\\n", suma);
+    return 0;
+}`,
+                    salida: `Ingrese N: 10
+Suma de pares: 30
+
+Prueba de escritorio:
+N = 10
+Iteraciones: 2, 4, 6, 8, 10
+suma = 0 + 2 + 4 + 6 + 8 + 10 = 30`
+                },
+                {
+                    titulo: 'Conversión de Calificación',
+                    descripcion: 'Convierte una nota numérica (0-20) a una calificación alfabética usando if-else.',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int nota;
+    
+    printf("Ingrese la nota (0-20): ");
+    scanf("%d", &nota);
+    
+    if (nota < 0 || nota > 20) {
+        printf("Error: Nota fuera de rango\\n");
+    } else if (nota >= 18) {
+        printf("A - Excelente\\n");
+    } else if (nota >= 15) {
+        printf("B - Muy Bueno\\n");
+    } else if (nota >= 11) {
+        printf("C - Bueno\\n");
+    } else if (nota >= 8) {
+        printf("D - Regular\\n");
+    } else {
+        printf("F - Desaprobado\\n");
+    }
+    
+    return 0;
+}`,
+                    salida: `Ingrese la nota (0-20): 16
+B - Muy Bueno
+
+Prueba de escritorio:
+nota = 16
+16 >= 18? No
+16 >= 15? Sí → Imprime "B - Muy Bueno"`
+                },
+                {
+                    titulo: 'Número Inverso',
+                    descripcion: 'Invierte los dígitos de un número usando ciclo while y operaciones módulo.',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int n, inverso = 0;
+    
+    printf("Ingrese numero: ");
+    scanf("%d", &n);
+    
+    while (n > 0) {
+        int digito = n % 10;
+        inverso = inverso * 10 + digito;
+        n = n / 10;
+    }
+    
+    printf("Numero inverso: %d\\n", inverso);
+    return 0;
+}`,
+                    salida: `Ingrese numero: 1234
+Numero inverso: 4321
+
+Prueba de escritorio:
+n = 1234, inverso = 0
+Iteración 1: digito=4, inverso=4, n=123
+Iteración 2: digito=3, inverso=43, n=12
+Iteración 3: digito=2, inverso=432, n=1
+Iteración 4: digito=1, inverso=4321, n=0`
+                },
+                {
+                    titulo: 'Menú de Calculadora',
+                    descripcion: 'Implementa un menú de calculadora básica usando do-while y switch.',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int opcion;
+    float num1, num2, resultado;
+    
+    do {
+        printf("\\n====== CALCULADORA ======\\n");
+        printf("1. Suma\\n");
+        printf("2. Resta\\n");
+        printf("3. Multiplicacion\\n");
+        printf("4. Division\\n");
+        printf("0. Salir\\n");
+        printf("Opcion: ");
+        scanf("%d", &opcion);
+        
+        if (opcion == 0) break;
+        
+        printf("Numero 1: ");
+        scanf("%f", &num1);
+        printf("Numero 2: ");
+        scanf("%f", &num2);
+        
+        switch(opcion) {
+            case 1:
+                resultado = num1 + num2;
+                printf("Resultado: %.2f\\n", resultado);
+                break;
+            case 2:
+                resultado = num1 - num2;
+                printf("Resultado: %.2f\\n", resultado);
+                break;
+            case 3:
+                resultado = num1 * num2;
+                printf("Resultado: %.2f\\n", resultado);
+                break;
+            case 4:
+                if (num2 != 0) {
+                    resultado = num1 / num2;
+                    printf("Resultado: %.2f\\n", resultado);
+                } else {
+                    printf("Error: Division por cero\\n");
+                }
+                break;
+            default:
+                printf("Opcion invalida\\n");
+        }
+        
+    } while (opcion != 0);
+    
+    return 0;
+}`,
+                    salida: `====== CALCULADORA ======
+1. Suma
+2. Resta
+3. Multiplicacion
+4. Division
+0. Salir
+Opcion: 1
+Numero 1: 15
+Numero 2: 25
+Resultado: 40.00`
+                },
+                {
+                    titulo: 'Patrón de Asteriscos - Pirámide',
+                    descripcion: 'Genera una pirámide de asteriscos usando ciclos anidados.',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int n;
+    
+    printf("Ingrese N: ");
+    scanf("%d", &n);
+    
+    for (int i = 1; i <= n; i++) {
+        // Espacios
+        for (int e = 1; e <= n - i; e++) {
+            printf(" ");
+        }
+        // Asteriscos
+        for (int a = 1; a <= 2*i - 1; a++) {
+            printf("*");
+        }
+        printf("\\n");
+    }
+    
+    return 0;
+}`,
+                    salida: `Ingrese N: 4
+   *
+  ***
+ *****
+*******
+
+Prueba de escritorio (N=4):
+i=1: 3 espacios, 1 asterisco
+i=2: 2 espacios, 3 asteriscos
+i=3: 1 espacio, 5 asteriscos
+i=4: 0 espacios, 7 asteriscos`
+                }
+            ];
+            
+            ejercicios.forEach((ej, index) => {
+                container.innerHTML += crearCardEjercicio(ej, `EJERCICIO ${index + 1}`);
+            });
+        }
+
+        // ACTIVIDAD 5
+        function cargarActividad5() {
+            const container = document.getElementById('act5-container');
+            const ejercicios = [
+                {
+                    titulo: 'Número Perfecto',
+                    descripcion: 'Verifica si un número es perfecto (la suma de sus divisores propios es igual al número).',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int n, suma = 0;
+    
+    printf("Ingrese un numero: ");
+    scanf("%d", &n);
+    
+    printf("Divisores de %d: ", n);
+    for (int i = 1; i < n; i++) {
+        if (n % i == 0) {
+            printf("%d ", i);
+            suma += i;
+        }
+    }
+    
+    printf("\\nSuma de divisores: %d\\n", suma);
+    
+    if (suma == n)
+        printf("%d es un numero perfecto\\n", n);
+    else
+        printf("%d NO es un numero perfecto\\n", n);
+    
+    return 0;
+}`,
+                    salida: `Ingrese un numero: 6
+Divisores de 6: 1 2 3
+Suma de divisores: 6
+6 es un numero perfecto
+
+Prueba de escritorio:
+n = 6
+Divisores: 1, 2, 3
+suma = 1 + 2 + 3 = 6
+6 == 6 → Es perfecto`
+                },
+                {
+                    titulo: 'Serie de Fibonacci',
+                    descripcion: 'Genera los primeros N términos de la serie de Fibonacci.',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int n, a = 0, b = 1, siguiente;
+    
+    printf("Ingrese N terminos: ");
+    scanf("%d", &n);
+    
+    printf("Serie Fibonacci: ");
+    
+    for (int i = 0; i < n; i++) {
+        if (i == 0) {
+            printf("%d ", a);
+        } else if (i == 1) {
+            printf("%d ", b);
+        } else {
+            siguiente = a + b;
+            printf("%d ", siguiente);
+            a = b;
+            b = siguiente;
+        }
+    }
+    
+    printf("\\n");
+    return 0;
+}`,
+                    salida: `Ingrese N terminos: 8
+Serie Fibonacci: 0 1 1 2 3 5 8 13
+
+Prueba de escritorio (N=8):
+i=0: Imprime 0
+i=1: Imprime 1
+i=2: siguiente=1, imprime 1, a=1, b=1
+i=3: siguiente=2, imprime 2, a=1, b=2
+i=4: siguiente=3, imprime 3, a=2, b=3
+i=5: siguiente=5, imprime 5, a=3, b=5
+i=6: siguiente=8, imprime 8, a=5, b=8
+i=7: siguiente=13, imprime 13, a=8, b=13`
+                },
+                {
+                    titulo: 'Validador de Contraseña',
+                    descripcion: 'Valida si una contraseña cumple con los requisitos de seguridad.',
+                    codigo: `#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char pass[100];
+    int mayus = 0, minus = 0, digito = 0, especial = 0;
+    
+    printf("Ingrese contrasena: ");
+    scanf("%s", pass);
+    
+    int longitud = strlen(pass);
+    
+    for (int i = 0; i < longitud; i++) {
+        if (pass[i] >= 'A' && pass[i] <= 'Z') mayus = 1;
+        else if (pass[i] >= 'a' && pass[i] <= 'z') minus = 1;
+        else if (pass[i] >= '0' && pass[i] <= '9') digito = 1;
+        else if (pass[i]=='!' || pass[i]=='@' || pass[i]=='#' ||
+                 pass[i]=='$' || pass[i]=='%') especial = 1;
+    }
+    
+    printf("\\nValidacion:\\n");
+    printf("Longitud >= 8: %s\\n", longitud >= 8 ? "SI" : "NO");
+    printf("Mayuscula: %s\\n", mayus ? "SI" : "NO");
+    printf("Minuscula: %s\\n", minus ? "SI" : "NO");
+    printf("Digito: %s\\n", digito ? "SI" : "NO");
+    printf("Caracter especial: %s\\n", especial ? "SI" : "NO");
+    
+    if (longitud >= 8 && mayus && minus && digito && especial)
+        printf("\\nContrasena VALIDA\\n");
+    else
+        printf("\\nContrasena INVALIDA\\n");
+    
+    return 0;
+}`,
+                    salida: `Ingrese contrasena: Abc123!@
+
+Validacion:
+Longitud >= 8: SI
+Mayuscula: SI
+Minuscula: SI
+Digito: SI
+Caracter especial: SI
+
+Contrasena VALIDA`
+                },
+                {
+                    titulo: 'Conversión de Bases - Decimal a Binario',
+                    descripcion: 'Convierte un número decimal a binario usando divisiones sucesivas.',
+                    codigo: `#include <stdio.h>
+
+int main() {
+    int num, temp, i = 0;
+    int binario[32];
+    
+    printf("Ingrese numero decimal: ");
+    scanf("%d", &num);
+    temp = num;
+    
+    while (temp > 0) {
+        binario[i] = temp % 2;
+        temp /= 2;
+        i++;
+    }
+    
+    printf("Binario: ");
+    for (int j = i-1; j >= 0; j--)
+        printf("%d", binario[j]);
+    printf("\\n");
+    
+    return 0;
+}`,
+                    salida: `Ingrese numero decimal: 13
+Binario: 1101
+
+Prueba de escritorio (13):
+13 % 2 = 1, 13 / 2 = 6
+6 % 2 = 0, 6 / 2 = 3
+3 % 2 = 1, 3 / 2 = 1
+1 % 2 = 1, 1 / 2 = 0
+Binario (invertido): 1101`
+                },
+                {
+                    titulo: 'Juego de Adivinanza',
+                    descripcion: 'Juego donde el usuario debe adivinar un número aleatorio entre 1 y 100.',
+                    codigo: `#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int numero, intento, intentos = 0;
+    
+    srand(time(0));
+    numero = rand() % 100 + 1;
+    
+    printf("=== ADIVINA EL NUMERO (1-100) ===\\n\\n");
+    
+    do {
+        intentos++;
+        printf("Intento %d: ", intentos);
+        scanf("%d", &intento);
+        
+        if (intento > numero)
+            printf("El numero es MENOR\\n");
+        else if (intento < numero)
+            printf("El numero es MAYOR\\n");
+        else
+            printf("\\nFELICIDADES! Adivinaste en %d intentos\\n",
+                   intentos);
+        
+    } while (intento != numero);
+    
+    return 0;
+}`,
+                    salida: `=== ADIVINA EL NUMERO (1-100) ===
+
+Intento 1: 50
+El numero es MAYOR
+Intento 2: 75
+El numero es MENOR
+Intento 3: 63
+El numero es MENOR
+Intento 4: 57
+El numero es MAYOR
+Intento 5: 60
+
+FELICIDADES! Adivinaste en 5 intentos`
+                }
+            ];
+            
+            ejercicios.forEach((ej, index) => {
+                container.innerHTML += crearCardEjercicio(ej, `EJERCICIO ${index + 6}`);
+            });
+        }
+
+        function crearCardEjercicio(ejercicio, numeroEj) {
+            return `
+                <div class="activity-card fade-in">
+                    <div class="activity-header">
+                        <div>
+                            <div class="activity-meta">
+                                <span class="meta-badge">
+                                    <i class="fas fa-code"></i> ${numeroEj}
+                                </span>
+                            </div>
+                            <h3 class="activity-title">${ejercicio.titulo}</h3>
+                        </div>
+                    </div>
+                    <p class="activity-description">${ejercicio.descripcion}</p>
+                    
+                    <div class="code-block">
+                        <pre><code>${escapeHtml(ejercicio.codigo)}</code></pre>
+                    </div>
+                    
+                    <div class="output-block">
+                        <h5><i class="fas fa-terminal"></i> OUTPUT</h5>
+                        <pre>${escapeHtml(ejercicio.salida)}</pre>
+                    </div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // ==================== CARGAR EJERCICIOS ====================
+        window.addEventListener('DOMContentLoaded', () => {
+            cargarActividad2();
+            cargarActividad3();
+            cargarActividad4();
+            cargarActividad5();
+            
+            // Aplicar animaciones a nuevos elementos
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+            }, 100);
+        });
+    </script>
+</body>
+</html>
